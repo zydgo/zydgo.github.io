@@ -29,44 +29,27 @@
 	</header>
 
 	<main>
-		<h1>Archive</h1>
+		
 
-
+<h1>#个人简介</h1>
 
 
 
 <ul class="archive">
-	
-	
-		<li class="archive__year archive__expendable ">
-			<span>2021</span>
+		<li class="archive__year archive__expendable archive__expendable_disabled">
 			<ul>
+			
 				
-					<li class="archive__month archive__expendable">
-						<span>May</span>
-						<ul>
-							
-								<li class="archive__entry"><a href="/2021/05/30/About%20me/">About Me</a></li>
-							
-						</ul>
-					</li>
+					
+					
+						<li class="archive__entry"><a href="/2021/05/30/About%20me/">About Me</a></li>
+					
 
 				
+			
 			</ul>
 		</li>
-		
-	
 </ul>
-
-<script>
-	const expandables = document.querySelectorAll('.archive__expendable')
-	for(let i = 0; i < expandables.length; i++) {
-		expandables[i].addEventListener('click', (e) => {
-			e.stopPropagation()
-			expandables[i].classList.toggle('archive__expendable_collapsed')
-		})
-	}
-</script>
 
 	</main>
 
