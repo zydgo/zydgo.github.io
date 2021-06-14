@@ -96,7 +96,7 @@
       
       
       
-      <h3 id="Sublime-Text-3中的OpenSees插件配置"><a href="#Sublime-Text-3中的OpenSees插件配置" class="headerlink" title="Sublime Text 3中的OpenSees插件配置"></a>Sublime Text 3中的OpenSees插件配置</h3><p><a target="_blank" rel="noopener" href="https://www.sublimetext.com/">Sublime Text</a> 是一个轻量、简洁、高效、跨平台的编辑器；可跨平台支持Windows/Mac/Linux；支持32与64位操作系统；支持语法高亮（不限于 C, C++, C#, CSS, HTML, Java, JavaScript, LaTeX, Markdown, Matlab, Python, R等主流编程语言）、代码补全（自动补齐括号、大括号等配对符号，自动补全已经出现的单词，自动补全函数名等）、代码片段（Snippet）、代码折叠、行号显示、自定义皮肤、配色方案等。</p>
+      <p><a target="_blank" rel="noopener" href="https://www.sublimetext.com/">Sublime Text</a> 是一个轻量、简洁、高效、跨平台的编辑器；可跨平台支持Windows/Mac/Linux；支持32与64位操作系统；支持语法高亮（不限于 C, C++, C#, CSS, HTML, Java, JavaScript, LaTeX, Markdown, Matlab, Python, R等主流编程语言）、代码补全（自动补齐括号、大括号等配对符号，自动补全已经出现的单词，自动补全函数名等）、代码片段（Snippet）、代码折叠、行号显示、自定义皮肤、配色方案等。</p>
 <p><a target="_blank" rel="noopener" href="https://opensees.berkeley.edu/">OpenSees</a>（Open System for Earthquake Engineering Simulation）是地震工程模拟开源系统的简称，是个较为全面且不断发展的开源软件。该软件具备丰富的算法、材料本构及单元等，适用于静力及动力的线性或非线性分析、特征值分析、截面应力应变 、力学特性等问题的求解。。软件本身不具备前处理功能，以Tcl或Tk作为其解释器语言，需要用户采用命令流进行建模。</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/bzarco/Sublime-OpenSees">Sublime-OpenSees</a> 是一个专门针对OpenSees用户所提供的插件包，以帮助用户快速地输入OpenSees代码，主要功能有：</p>
 <ul>
@@ -105,37 +105,37 @@
 <li>执行分析：在 Sublime Text 内部提交代码执行分析，不需要切换到控制台。</li>
 </ul>
 <p><em>本文介绍的操作均基于Win系统，其他系统操作也较为类似。</em></p>
-<h4 id="1-Sublime-Text-3安装及汉化"><a href="#1-Sublime-Text-3安装及汉化" class="headerlink" title="1. Sublime Text 3安装及汉化"></a>1. Sublime Text 3安装及汉化</h4><p>虽然Sublime Text目前已有2、3、4三个版本，但本文介绍的OpenSees插件配置是基于<strong>Sublime Text 3</strong>，因此建议前往官网下载与电脑系统相对应的安装版本。一般而言，登录官网，首页已经根据电脑型号选择适合版本，直接点击下载即可。安装完成后，应对软件进行<strong>安装插件管理器</strong>（必需）、<strong>汉化</strong>（可选）和<strong>停止更新提醒</strong>（建议）等操作。</p>
-<h5 id="（1）安装插件管理器Package-Control"><a href="#（1）安装插件管理器Package-Control" class="headerlink" title="（1）安装插件管理器Package Control"></a>（1）安装插件管理器Package Control</h5><p>Sublime Text 3的插件管理器<strong>Package Control</strong>可以帮助用户轻松地获取和安装更多的插件。在进入软件界面后，按住快捷键 <code>Ctrl + Shift + P</code>，在输入框中输入<code>Package</code>，点击 <code>Install Package Control</code>，之后会出现提醒安装成功的弹窗。</p>
+<h3 id="1-Sublime-Text-3安装及汉化"><a href="#1-Sublime-Text-3安装及汉化" class="headerlink" title="1. Sublime Text 3安装及汉化"></a>1. Sublime Text 3安装及汉化</h3><p>虽然Sublime Text目前已有2、3、4三个版本，但本文介绍的OpenSees插件配置是基于<strong>Sublime Text 3</strong>，因此建议前往官网下载与电脑系统相对应的安装版本。一般而言，登录官网，首页已经根据电脑型号选择适合版本，直接点击下载即可。安装完成后，应对软件进行<strong>安装插件管理器</strong>（必需）、<strong>汉化</strong>（可选）和<strong>停止更新提醒</strong>（建议）等操作。</p>
+<h4 id="（1）安装插件管理器Package-Control"><a href="#（1）安装插件管理器Package-Control" class="headerlink" title="（1）安装插件管理器Package Control"></a>（1）安装插件管理器Package Control</h4><p>Sublime Text 3的插件管理器<strong>Package Control</strong>可以帮助用户轻松地获取和安装更多的插件。在进入软件界面后，按住快捷键 <code>Ctrl + Shift + P</code>，在输入框中输入<code>Package</code>，点击 <code>Install Package Control</code>，之后会出现提醒安装成功的弹窗。</p>
 <p><img src="https://www.zhengyingda.com/2021/06/13/Sublime-Text-3%E4%B8%AD%E7%9A%84OpenSees%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE/%E5%9B%BE1.png" alt="图1"></p>
 <center>图1. 安装Package Control插件管理器</center>
 
-<h5 id="（2）安装汉化插件"><a href="#（2）安装汉化插件" class="headerlink" title="（2）安装汉化插件"></a>（2）安装汉化插件</h5><p><strong>Package Control</strong>安装完成后，用户即可轻松地安装所有 Sublime Text 插件。同样，按住快捷键 <code>Ctrl + Shift + P</code>，在输入框中输入<code>PCIP</code>，点击 <code>Package Control: Install Package</code>。在新出现的输入框中输入<code>Chinese</code>，点击<code>ChineseLocalizations</code>，即可顺利完成汉化。如果想要取消汉化，或者更改成其他语言模式，可使用主菜单的<code>帮助&gt;Language</code>子菜单来切换语言。</p>
+<h4 id="（2）安装汉化插件"><a href="#（2）安装汉化插件" class="headerlink" title="（2）安装汉化插件"></a>（2）安装汉化插件</h4><p><strong>Package Control</strong>安装完成后，用户即可轻松地安装所有 Sublime Text 插件。同样，按住快捷键 <code>Ctrl + Shift + P</code>，在输入框中输入<code>PCIP</code>，点击 <code>Package Control: Install Package</code>。在新出现的输入框中输入<code>Chinese</code>，点击<code>ChineseLocalizations</code>，即可顺利完成汉化。如果想要取消汉化，或者更改成其他语言模式，可使用主菜单的<code>帮助&gt;Language</code>子菜单来切换语言。</p>
 <p><img src="https://www.zhengyingda.com/2021/06/13/Sublime-Text-3%E4%B8%AD%E7%9A%84OpenSees%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE/%E5%9B%BE2.png" alt="图2"></p>
 <center>图2. 打开Package Control插件管理器搜索安装插件</center>
 
 <p><img src="https://www.zhengyingda.com/2021/06/13/Sublime-Text-3%E4%B8%AD%E7%9A%84OpenSees%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE/%E5%9B%BE3.png" alt="图3"></p>
 <center>图3. 安装汉化插件</center>
 
-<h5 id="（3）停止软件更新提醒"><a href="#（3）停止软件更新提醒" class="headerlink" title="（3）停止软件更新提醒"></a>（3）停止软件更新提醒</h5><p>由于软件目前已有Sublime Text 4版本，若不停止软件更新提醒，则每次打开软件均会弹窗提醒，故建议完成本步骤操作。点击主菜单的<code>Preferences &gt; Settings</code>子菜单，输入如下命令，同时注意命令前的逗号<code>,</code>不可缺少！</p>
+<h4 id="（3）停止软件更新提醒"><a href="#（3）停止软件更新提醒" class="headerlink" title="（3）停止软件更新提醒"></a>（3）停止软件更新提醒</h4><p>由于软件目前已有Sublime Text 4版本，若不停止软件更新提醒，则每次打开软件均会弹窗提醒，故建议完成本步骤操作。点击主菜单的<code>Preferences &gt; Settings</code>子菜单，输入如下命令，同时注意命令前的逗号<code>,</code>不可缺少！</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;update_check&quot;</span>: <span class="literal">false</span></span><br></pre></td></tr></table></figure>
 
 <p><img src="https://www.zhengyingda.com/2021/06/13/Sublime-Text-3%E4%B8%AD%E7%9A%84OpenSees%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE/%E5%9B%BE4.png" alt="图4"></p>
 <center>图4. 停止软件更新提醒</center>
 
 <p>此外，虽然Sublime Text免费使用，但经常会弹出购买（purchase）注册码的弹窗。如果想彻底解决此问题，可移步其他相关网站进行搜索，本文不作介绍。</p>
-<h4 id="2-OpenSees插件安装及配置"><a href="#2-OpenSees插件安装及配置" class="headerlink" title="2. OpenSees插件安装及配置"></a>2. OpenSees插件安装及配置</h4><h5 id="（1）插件安装"><a href="#（1）插件安装" class="headerlink" title="（1）插件安装"></a>（1）插件安装</h5><p>类似地，按住快捷键 <code>Ctrl + Shift + P</code>，在输入框中输入<code>PCIP</code>，点击 <code>Package Control: Install Package</code>。在新出现的输入框中输入<code>OpenSees</code>，点击<code>OpenSees</code>，即可顺利完成插件安装。</p>
+<h3 id="2-OpenSees插件安装及配置"><a href="#2-OpenSees插件安装及配置" class="headerlink" title="2. OpenSees插件安装及配置"></a>2. OpenSees插件安装及配置</h3><h4 id="（1）插件安装"><a href="#（1）插件安装" class="headerlink" title="（1）插件安装"></a>（1）插件安装</h4><p>类似地，按住快捷键 <code>Ctrl + Shift + P</code>，在输入框中输入<code>PCIP</code>，点击 <code>Package Control: Install Package</code>。在新出现的输入框中输入<code>OpenSees</code>，点击<code>OpenSees</code>，即可顺利完成插件安装。</p>
 <p><img src="https://www.zhengyingda.com/2021/06/13/Sublime-Text-3%E4%B8%AD%E7%9A%84OpenSees%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE/%E5%9B%BE5.png" alt="图5"></p>
 <center>图5. OpenSees插件安装</center>
 
-<h5 id="（2）插件配置"><a href="#（2）插件配置" class="headerlink" title="（2）插件配置"></a>（2）插件配置</h5><p>打开 <code>Preferences &gt; Package Settings &gt; OpenSees &gt; Settings - User</code> ，复制粘贴如下代码并保存即可：</p>
+<h4 id="（2）插件配置"><a href="#（2）插件配置" class="headerlink" title="（2）插件配置"></a>（2）插件配置</h4><p>打开 <code>Preferences &gt; Package Settings &gt; OpenSees &gt; Settings - User</code> ，复制粘贴如下代码并保存即可：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;opensees&quot;</span>: <span class="string">&quot;opensees&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>之后，如果完成OpenSees命令流Tcl文件的编写，即可按住<code>Ctrl + B</code>的快捷键，进行命令执行分析。</p>
 <p><img src="https://www.zhengyingda.com/2021/06/13/Sublime-Text-3%E4%B8%AD%E7%9A%84OpenSees%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE/%E5%9B%BE6.png" alt="图6"></p>
 <center>图6. OpenSees命令直接在Sublime Text中执行分析</center>
 
-<h4 id="3-OpenSees加入环境变量"><a href="#3-OpenSees加入环境变量" class="headerlink" title="3. OpenSees加入环境变量"></a>3. OpenSees加入环境变量</h4><p>前面步骤完成之后，有时并无法实现<code>图6</code>所示的效果，可能的原因是未将<code>OpenSees.exe</code>所在的文件夹加入<code>环境变量$PATH</code>。可按下面操作完成，打开 <code>控制面板 &gt; 系统和安全 &gt; 系统 &gt; 高级系统设置 &gt; 环境变量</code>，在<code>系统变量</code> 中找到 <code>Path</code> ，把<code>OpenSees.exe</code>所在的文件夹附加在 <code>Path</code> 环境变量值的后面，路径之间用 <code>;</code> 分隔。进入 <code>命令提示符</code> ，输入 <code>opensees</code> ，若OpenSees程序正常运行，则证明加入环境变量成功，如果未正常运行，可尝试重启系统。</p>
+<h3 id="3-OpenSees加入环境变量"><a href="#3-OpenSees加入环境变量" class="headerlink" title="3. OpenSees加入环境变量"></a>3. OpenSees加入环境变量</h3><p>前面步骤完成之后，有时并无法实现<code>图6</code>所示的效果，可能的原因是未将<code>OpenSees.exe</code>所在的文件夹加入<code>环境变量$PATH</code>。可按下面操作完成，打开 <code>控制面板 &gt; 系统和安全 &gt; 系统 &gt; 高级系统设置 &gt; 环境变量</code>，在<code>系统变量</code> 中找到 <code>Path</code> ，把<code>OpenSees.exe</code>所在的文件夹附加在 <code>Path</code> 环境变量值的后面，路径之间用 <code>;</code> 分隔。进入 <code>命令提示符</code> ，输入 <code>opensees</code> ，若OpenSees程序正常运行，则证明加入环境变量成功，如果未正常运行，可尝试重启系统。</p>
 <img src="https://www.zhengyingda.com/2021/06/13/Sublime-Text-3中的OpenSees插件配置/图7.png" alt="图7" style="zoom:67%;" />
 
 <center>图7. OpenSees程序加入环境变量</center>
