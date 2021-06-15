@@ -64,6 +64,291 @@
     <h1 class="page-type-title"></h1>
     
     
+    <article id="post-ABAQUS模拟钢筋混凝土节点低周反复荷载试验" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/">ABAQUS模拟钢筋混凝土节点低周反复荷载试验</a>
+</h2>
+
+
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/" class="article-date">
+  <time datetime="2021-06-15T09:14:00.000Z" itemprop="datePublished">2021-06-15</time>
+</a>
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+      <h3 id="1-建模要点"><a href="#1-建模要点" class="headerlink" title="1. 建模要点"></a>1. 建模要点</h3><p>采用ABAQUS CAE有限元软件建立命名为RC-node的模型，现浇梁柱节点中的纵筋、构造筋和箍筋取Truss单元中T3D2单元进行钢筋的模拟。现浇式节点中的混凝土选用三维实体（3D-Solid）减缩积分单元C3D8R进行模拟。对模型先进行切分，后划分。采用ABAQUS Standard隐式求解，在完成有限元模拟计算后采用ABAQUS Viewer进行后处理。在建模过程中需统一量纲，本报告采用的量纲见表1。</p>
+ <center>表1. 统一量纲</center>
+
+<table>
+<thead>
+<tr>
+<th>量</th>
+<th>长度</th>
+<th>力</th>
+<th>质量</th>
+<th>时间</th>
+<th>应力</th>
+<th>密度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SI</td>
+<td>mm</td>
+<td>N</td>
+<td>ton</td>
+<td>s</td>
+<td>MPa</td>
+<td>ton/mm3</td>
+</tr>
+</tbody></table>
+<h3 id="2-建模过程"><a href="#2-建模过程" class="headerlink" title="2. 建模过程"></a>2. 建模过程</h3><p>启动ABAQUS/CAE后，选择Create Model Database，创建新模型数据库。</p>
+<h4 id="2-1-创建部件（Part）"><a href="#2-1-创建部件（Part）" class="headerlink" title="2.1 创建部件（Part）"></a>2.1 创建部件（Part）</h4><p>在ABAQUS中的Part模块下根据节点模型尺寸数据分别创建混凝土和钢筋部件。采用3D-Solid单元创建梁、柱的混凝土部件，采用3D-Wire单元分别创建梁、柱的纵筋和箍筋部件。各部件的尺寸等相关建模信息如表2所示。</p>
+ <center>表2. RC-node的部件（Part）创建</center>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Modeling Space</th>
+<th>Type</th>
+<th>Shape</th>
+<th>Type</th>
+<th>H×B / d</th>
+<th>L</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BeamCon</td>
+<td>3D</td>
+<td>Deformable</td>
+<td>Solid</td>
+<td>Extrusion</td>
+<td>400×400</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>ColumnCon</td>
+<td>3D</td>
+<td>Deformable</td>
+<td>Solid</td>
+<td>Extrusion</td>
+<td>400×250</td>
+<td>2450</td>
+</tr>
+<tr>
+<td>BeamBar_8mm</td>
+<td>3D</td>
+<td>Deformable</td>
+<td>Wire</td>
+<td>Planar</td>
+<td>8</td>
+<td>2400</td>
+</tr>
+<tr>
+<td>BeamBar_12mm</td>
+<td>3D</td>
+<td>Deformable</td>
+<td>Wire</td>
+<td>Planar</td>
+<td>12</td>
+<td>2400</td>
+</tr>
+<tr>
+<td>BeamBar_20mm</td>
+<td>3D</td>
+<td>Deformable</td>
+<td>Wire</td>
+<td>Planar</td>
+<td>20</td>
+<td>2400</td>
+</tr>
+<tr>
+<td>ColumnBar_8mm</td>
+<td>3D</td>
+<td>Deformable</td>
+<td>Wire</td>
+<td>Planar</td>
+<td>8</td>
+<td>2450</td>
+</tr>
+<tr>
+<td>ColumnBar_20mm</td>
+<td>3D</td>
+<td>Deformable</td>
+<td>Wire</td>
+<td>Planar</td>
+<td>20</td>
+<td>2450</td>
+</tr>
+</tbody></table>
+<h4 id="2-2-创建材料和截面（Property）"><a href="#2-2-创建材料和截面（Property）" class="headerlink" title="2.2 创建材料和截面（Property）"></a>2.2 创建材料和截面（Property）</h4><p>在ABAQUS中的Property模块中定义混凝土和钢筋的本构模型和截面特性，并将材料和截面特性赋予到相对应的部件上。</p>
+<h5 id="（1）混凝土本构"><a href="#（1）混凝土本构" class="headerlink" title="（1）混凝土本构"></a>（1）混凝土本构</h5><p>采用ABAQUS中的损伤塑性模型（Concrete Damaged Plasticity，简称CDP模型），混凝土单轴受拉、受压应力-应变关系，均采用《混凝土结构设计规范》（GB 50010-2010）中的附录C.2提供的混凝土本构关系。混凝土塑性损伤本构模型数据为另外的重点，非建模技术要点，在此不作详细介绍，详情可移步相关课程介绍。</p>
+<p>ABAQUS中混凝土塑性损伤模型（CDP模型）参数标定如表3所示。</p>
+ <center>表3. 混凝土塑性损伤模型参数标定</center>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>取值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>剪胀角（Dilation  Angle）</td>
+<td>30</td>
+</tr>
+<tr>
+<td>流动势偏移量（Eccentricity）</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>双轴受压与单周受压极限强度比</td>
+<td>1.16</td>
+</tr>
+<tr>
+<td>不变量应力比</td>
+<td>0.667</td>
+</tr>
+<tr>
+<td>粘滞系数（Viscosity  Parameter）</td>
+<td>0.00001</td>
+</tr>
+<tr>
+<td>受拉损伤恢复因子（Tension  Recovery）</td>
+<td>0</td>
+</tr>
+<tr>
+<td>受压损伤恢复因子（Compression  Recovery）</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<h5 id="（2）钢筋本构"><a href="#（2）钢筋本构" class="headerlink" title="（2）钢筋本构"></a>（2）钢筋本构</h5><p>钢材本构关系采用简化的双线性模型。采用《混凝土结构设计规范》（GB 50010-2010）中的附录C.1提供的钢筋本构关系。</p>
+<p>完成材料C30和HRB400的定义，随后进行截面Section类型的设置，其中钢筋定义为Beam类型，包括直径8 mm、12 mm和20 mm等3种截面类型，混凝土则定义为Solid类型，且假定为均质Homogeneous。最后将定义的截面类型制定到相应的部件，即混凝土和不同直径的钢筋中，即完成本步骤操作。</p>
+<h4 id="2-3-定义装配（Assembly）"><a href="#2-3-定义装配（Assembly）" class="headerlink" title="2.3 定义装配（Assembly）"></a>2.3 定义装配（Assembly）</h4><p>在ABAQUS的Assembly模块对各部件进行装配，各部件Instant Type均设置为Independent。首先，组装节点的钢筋笼，涉及梁、柱的纵筋和箍筋，利用旋转、移动和阵列等工具完成装配，并用Merge命令将梁的柱的钢筋笼分别合并成整体BeamBars和ColumnBars。完成Merge命令后，应返回Property模块，指定梁、柱钢筋的截面方向。其次，组装节点的梁、柱混凝土部件，该部分不进行Merge操作。在ABAQUS内梁、柱的钢筋笼和混凝土部件，组装完成的情况如图1所示。</p>
+<table>
+<thead>
+<tr>
+<th align="center"><img src="https://www.zhengyingda.com/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/%E5%9B%BE1.a.png" alt="图1.a"></th>
+<th align="center"><img src="https://www.zhengyingda.com/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/%E5%9B%BE1.b.png" alt="图1.b"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">（a）梁的钢筋笼</td>
+<td align="center">（b）柱的钢筋笼</td>
+</tr>
+<tr>
+<td align="center"><img src="https://www.zhengyingda.com/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/%E5%9B%BE1.c.png" alt="图1.c"></td>
+<td align="center"><img src="https://www.zhengyingda.com/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/%E5%9B%BE1.d.png" alt="图1.d"></td>
+</tr>
+<tr>
+<td align="center">（c）节点钢筋笼</td>
+<td align="center">（d）节点混凝土</td>
+</tr>
+</tbody></table>
+  <center>图1. ABAQUS部件装配示意</center>
+
+<h4 id="2-4-设定相互作用（Interaction）"><a href="#2-4-设定相互作用（Interaction）" class="headerlink" title="2.4 设定相互作用（Interaction）"></a>2.4 设定相互作用（Interaction）</h4><p>在ABAQUS的Interaction模块中设定相互作用，将所有钢筋笼用Embedded Region命令嵌入到混凝土中，而梁、柱的混凝土之间的接触面采用Tie命令连接。此外，由于柱子上下在加载过程中为铰接，则可通过MCP Beam约束进行设置，限制参考点的位置，以控制柱子上下截面的转动，如图2所示。</p>
+<table>
+<thead>
+<tr>
+<th align="center"><img src="https://www.zhengyingda.com/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/%E5%9B%BE2.a.png" alt="图2.a"></th>
+<th align="center"><img src="https://www.zhengyingda.com/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/%E5%9B%BE2.a.png" alt="图2.a"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">（a）相互作用命令</td>
+<td align="center">（b）相互作用效果</td>
+</tr>
+</tbody></table>
+  <center>图2. 设定相互作用 </center>
+
+<h4 id="2-5-划分网格（Mesh）"><a href="#2-5-划分网格（Mesh）" class="headerlink" title="2.5 划分网格（Mesh）"></a>2.5 划分网格（Mesh）</h4><p>在ABAQUS的Mesh模块下对模型进行网格划分。首先，创建种子Seed，以此划分网格Mesh，混凝土部分网格划分尺寸为80 mm；采用相同的网格尺寸划分梁、柱的钢筋笼。其次，注意要在Assign Element Type中将所有梁、柱的钢筋设置为Truss（T3D2），混凝土为3D Stress（C3D8R）缩减单元。网格划分结果如下图所示。</p>
+<p> <img src="https://www.zhengyingda.com/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/%E5%9B%BE3.png" alt="图3"></p>
+<center>图3. 划分网格</center>
+
+<h4 id="2-6-设置分析步（Step）"><a href="#2-6-设置分析步（Step）" class="headerlink" title="2.6 设置分析步（Step）"></a>2.6 设置分析步（Step）</h4><p>在ABAQUS的Step模块中创建一个新的分析步cyclic，分析步为静力分析类型，即Static，General，分析步时间为32，增量类型为Automatic，允许增量步最大数目为320000，初始增量步大小为0.２，最小增量步为1E-010，最大步长为0.４。如图4所示。</p>
+<p> <img src="https://www.zhengyingda.com/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/%E5%9B%BE4.png" alt="图4"></p>
+<center>图4. 设置分析步</center>
+
+<h4 id="2-7-定义荷载（Load）"><a href="#2-7-定义荷载（Load）" class="headerlink" title="2.7 定义荷载（Load）"></a>2.7 定义荷载（Load）</h4><p>在ABAQUS的Load模块下定义荷载。在Boundary Condition命令中创建如图5所示的位移控制的荷载cyclic，施加于梁的两端的U1方向，具体设置如图6。节点的柱子上下边界条件设置为topPin和bottomPin，即铰接，限制参考点在U1、U2和U3的水平位移，以及限制 UR2和UR3的转动方向，即仅UR1反向为自由，参数设置如图6所示。边界和荷载条件设置完成后如图7所示。</p>
+<p> <img src="https://www.zhengyingda.com/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/%E5%9B%BE5.png" alt="图5"></p>
+ <center>图5. 低周反复加载制度曲线</center>
+
+<table>
+<thead>
+<tr>
+<th><img src="https://www.zhengyingda.com/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/%E5%9B%BE6.a.png" alt="图6.a"></th>
+<th><img src="https://www.zhengyingda.com/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/%E5%9B%BE6.b.png" alt="图6.b"></th>
+<th><img src="https://www.zhengyingda.com/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/%E5%9B%BE6.c.png" alt="图6.c"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>（a）柱子的上下边界条件</td>
+<td>（b）梁的左侧位移加载</td>
+<td>（c）梁的右侧位移加载</td>
+</tr>
+</tbody></table>
+ <center>图6. 节点的荷载和边界条件</center>
+
+<p><img src="https://www.zhengyingda.com/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/%E5%9B%BE7.png" alt="图7"></p>
+ <center>图7. 边界和荷载条件设置</center>
+
+<h4 id="2-8-创建分析文件（Job）"><a href="#2-8-创建分析文件（Job）" class="headerlink" title="2.8 创建分析文件（Job）"></a>2.8 创建分析文件（Job）</h4><p>在ABAQUS的Job模块下创建分析作业（Job）cyclic，进行计算分析。作业成功运行，监控窗口如图8所示。</p>
+<p> <img src="https://www.zhengyingda.com/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/%E5%9B%BE8.png" alt="图8"></p>
+<center>图8. 模型作业cyclic成功运行</center>
+
+<h3 id="3-模拟结果"><a href="#3-模拟结果" class="headerlink" title="3. 模拟结果"></a>3. 模拟结果</h3><p><img src="https://www.zhengyingda.com/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/%E5%9B%BE9.png" alt="图9"></p>
+ <center>图9. 节点的等效塑性应变PEEQ</center>
+
+<p><img src="https://www.zhengyingda.com/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/%E5%9B%BE10.png" alt="图10"></p>
+ <center>图10. 节点Mises应力云纹图（1/2剖面处）</center>
+
+<p><img src="https://www.zhengyingda.com/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/%E5%9B%BE11.png" alt="图11"></p>
+<center>图11. 加载点的滞回曲线</center>
+
+
+
+<p>希望本文能够帮到你~ 欢迎转载，转载请说明来源（<a target="_blank" rel="noopener" href="http://www.zhengyingda.com)/">www.zhengyingda.com）</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.zhengyingda.com/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/" data-id="ckpxvzv990000i4tx6d6vaxaq" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%89%E9%99%90%E5%85%83%E8%BD%AF%E4%BB%B6/" rel="tag">有限元软件</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
     <article id="post-Sublime-Text-3中的OpenSees插件配置" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
