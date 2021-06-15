@@ -255,15 +255,25 @@
   <center>图2. 设定相互作用 </center>
 
 <h4 id="2-5-划分网格（Mesh）"><a href="#2-5-划分网格（Mesh）" class="headerlink" title="2.5 划分网格（Mesh）"></a>2.5 划分网格（Mesh）</h4><p>在ABAQUS的Mesh模块下对模型进行网格划分。首先，创建种子Seed，以此划分网格Mesh，混凝土部分网格划分尺寸为80 mm；采用相同的网格尺寸划分梁、柱的钢筋笼。其次，注意要在Assign Element Type中将所有梁、柱的钢筋设置为Truss（T3D2），混凝土为3D Stress（C3D8R）缩减单元。网格划分结果如下图所示。</p>
-<p> <img src="https://www.zhengyingda.com/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/%E5%9B%BE3.png" alt="图3"></p>
+<div align=center>
+<img src="https://www.zhengyingda.com/2021/06/15/ABAQUS模拟钢筋混凝土节点低周反复荷载试验/图3.png" alt="图3" style="zoom:67%;" />
+</div>
+
 <center>图3. 划分网格</center>
 
 <h4 id="2-6-设置分析步（Step）"><a href="#2-6-设置分析步（Step）" class="headerlink" title="2.6 设置分析步（Step）"></a>2.6 设置分析步（Step）</h4><p>在ABAQUS的Step模块中创建一个新的分析步cyclic，分析步为静力分析类型，即Static，General，分析步时间为32，增量类型为Automatic，允许增量步最大数目为320000，初始增量步大小为0.２，最小增量步为1E-010，最大步长为0.４。如图4所示。</p>
-<p> <img src="https://www.zhengyingda.com/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/%E5%9B%BE4.png" alt="图4"></p>
+<div align=center>
+<img src="https://www.zhengyingda.com/2021/06/15/ABAQUS模拟钢筋混凝土节点低周反复荷载试验/图4.png" alt="图4" style="zoom:67%;" />
+</div>
+
 <center>图4. 设置分析步</center>
 
 <h4 id="2-7-定义荷载（Load）"><a href="#2-7-定义荷载（Load）" class="headerlink" title="2.7 定义荷载（Load）"></a>2.7 定义荷载（Load）</h4><p>在ABAQUS的Load模块下定义荷载。在Boundary Condition命令中创建如图5所示的位移控制的荷载cyclic，施加于梁的两端的U1方向，具体设置如图6。节点的柱子上下边界条件设置为topPin和bottomPin，即铰接，限制参考点在U1、U2和U3的水平位移，以及限制 UR2和UR3的转动方向，即仅UR1反向为自由，参数设置如图6所示。边界和荷载条件设置完成后如图7所示。</p>
-<p> <img src="https://www.zhengyingda.com/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/%E5%9B%BE5.png" alt="图5"></p>
+<div align=center>
+<img src="https://www.zhengyingda.com/2021/06/15/ABAQUS模拟钢筋混凝土节点低周反复荷载试验/图5.png" alt="图5" style="zoom:67%;" />
+</div>
+
+
  <center>图5. 低周反复加载制度曲线</center>
 
 <table>
@@ -282,20 +292,35 @@
 </tbody></table>
  <center>图6. 节点的荷载和边界条件</center>
 
-<p><img src="https://www.zhengyingda.com/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/%E5%9B%BE7.png" alt="图7"></p>
+<div align=center>
+<img src="https://www.zhengyingda.com/2021/06/15/ABAQUS模拟钢筋混凝土节点低周反复荷载试验/图7.png" alt="图7" style="zoom:67%;" />
+</div>
+
  <center>图7. 边界和荷载条件设置</center>
 
 <h4 id="2-8-创建分析文件（Job）"><a href="#2-8-创建分析文件（Job）" class="headerlink" title="2.8 创建分析文件（Job）"></a>2.8 创建分析文件（Job）</h4><p>在ABAQUS的Job模块下创建分析作业（Job）cyclic，进行计算分析。作业成功运行，监控窗口如图8所示。</p>
-<p> <img src="https://www.zhengyingda.com/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/%E5%9B%BE8.png" alt="图8"></p>
+<div align=center>
+<img src="https://www.zhengyingda.com/2021/06/15/ABAQUS模拟钢筋混凝土节点低周反复荷载试验/图8.png" alt="图8" style="zoom:67%;" />
+</div>
+
 <center>图8. 模型作业cyclic成功运行</center>
 
-<h3 id="3-模拟结果"><a href="#3-模拟结果" class="headerlink" title="3. 模拟结果"></a>3. 模拟结果</h3><p><img src="https://www.zhengyingda.com/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/%E5%9B%BE9.png" alt="图9"></p>
+<h3 id="3-模拟结果"><a href="#3-模拟结果" class="headerlink" title="3. 模拟结果"></a>3. 模拟结果</h3><div align=center>
+<img src="https://www.zhengyingda.com/2021/06/15/ABAQUS模拟钢筋混凝土节点低周反复荷载试验/图9.png" alt="图9" style="zoom:67%;" />
+</div>
+
  <center>图9. 节点的等效塑性应变PEEQ</center>
 
-<p><img src="https://www.zhengyingda.com/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/%E5%9B%BE10.png" alt="图10"></p>
+<div align=center>
+<img src="https://www.zhengyingda.com/2021/06/15/ABAQUS模拟钢筋混凝土节点低周反复荷载试验/图10.png" alt="图10" style="zoom:67%;" />
+</div>
+
  <center>图10. 节点Mises应力云纹图（1/2剖面处）</center>
 
-<p><img src="https://www.zhengyingda.com/2021/06/15/ABAQUS%E6%A8%A1%E6%8B%9F%E9%92%A2%E7%AD%8B%E6%B7%B7%E5%87%9D%E5%9C%9F%E8%8A%82%E7%82%B9%E4%BD%8E%E5%91%A8%E5%8F%8D%E5%A4%8D%E8%8D%B7%E8%BD%BD%E8%AF%95%E9%AA%8C/%E5%9B%BE11.png" alt="图11"></p>
+<div align=center>
+<img src="https://www.zhengyingda.com/2021/06/15/ABAQUS模拟钢筋混凝土节点低周反复荷载试验/图11.png" alt="图11" style="zoom:67%;" />
+</div>
+
 <center>图11. 加载点的滞回曲线</center>
 
 
