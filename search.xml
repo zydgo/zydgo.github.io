@@ -14,7 +14,11 @@
       
         <tags>
             
-            <tag> 有限元 </tag>
+            <tag> ABAQUS </tag>
+            
+            <tag> 钢筋混凝土 </tag>
+            
+            <tag> 节点 </tag>
             
         </tags>
       
@@ -35,7 +39,9 @@
             
             <tag> 软件技巧 </tag>
             
-            <tag> 有限元 </tag>
+            <tag> OpenSees </tag>
+            
+            <tag> Sublime Text </tag>
             
         </tags>
       
@@ -55,6 +61,10 @@
         <tags>
             
             <tag> 软件技巧 </tag>
+            
+            <tag> Microsoft系列 </tag>
+            
+            <tag> 论文排版 </tag>
             
         </tags>
       
